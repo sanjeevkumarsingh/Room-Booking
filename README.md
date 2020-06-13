@@ -6,8 +6,8 @@ This code has Create and Get REST API with in memory DB and test cases
 
 1) It will consume Json and will give output as a Json
 
-      Url : <host>:<port>/api/customer
-      Method type : POST
+      Url : /api/customer <br />
+      Method type : POST <br />
       Payload :
       {
         "id":<Long> //Auto Increment, primary key
@@ -50,8 +50,8 @@ This code has Create and Get REST API with in memory DB and test cases
 
 2) It will accept Id as a long datatype and will produce a json.
 
-      Url : <host>:<port>/api/customer/{Id}
-      Method type : GET
+      Url : /api/customer/{Id} <br />
+      Method type : GET <br />
       Response :
       {
         "id":<Long>,
