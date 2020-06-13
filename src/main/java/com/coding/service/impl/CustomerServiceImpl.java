@@ -5,6 +5,9 @@ import com.coding.exception.CustomerNotCreatedException;
 import com.coding.model.Customer;
 import com.coding.repository.CustomerRepository;
 import com.coding.service.CustomerService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.spi.LoggerFactoryBinder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
@@ -19,6 +22,7 @@ import org.springframework.util.StringUtils;
 
 @Component
 public class CustomerServiceImpl implements CustomerService {
+    Logger logger = LoggerFactory.getLogger(CustomerServiceImpl.class);
 
     @Autowired
     CustomerRepository customerRepository;
@@ -63,7 +67,7 @@ public class CustomerServiceImpl implements CustomerService {
                 customer = customerRepository.save(customer);
                 return customer;
             }catch (Exception ex){
-               System.out.println(ex.getLocalizedMessage());
+                logger.warn(ex.getLocalizedMessage());
                 throw new CustomerNotCreatedException(ex.getLocalizedMessage());
             }
         }

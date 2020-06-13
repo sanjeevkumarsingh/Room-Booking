@@ -5,6 +5,8 @@ import com.coding.exception.CustomerNotCreatedException;
 import com.coding.model.Customer;
 import com.coding.service.CustomerService;
 import com.coding.util.Util;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +26,8 @@ import javax.validation.Valid;
 @RestController
 @RequestMapping(value = "/api")
 public class CustomerController {
+
+    Logger logger = LoggerFactory.getLogger(CustomerController.class);
 
     @Autowired
     CustomerService customerService;
@@ -51,7 +55,7 @@ public class CustomerController {
                 if (!StringUtils.isEmpty(customer.getEmail()) && !StringUtils.isEmpty(customer.getPassword())) {
                     Boolean isExistingCustomer = customerService.verifyCustomer(customer);
                     if (!isExistingCustomer) {
-                        if (util.validatePassword(customer.getPassword())) {
+                        if (util.validatePassword(customer.getPassword()) && util.validateEmail(customer.getEmail())) {
                             customer = customerService.createCustomer(customer);
 
                             if (customer != null && !StringUtils.isEmpty(customer.getId()))
@@ -59,20 +63,20 @@ public class CustomerController {
                             else
                                 return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(customer);
                         } else
-                            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Customer password length should be between 8-10 character!");
+                            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Customer's password/email does meed it's criteria, password must be 8-10 character!");
 
                     } else {
-                        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Customer Email's already exist in Database, Please Verify!");
+                        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Customer's  Email already exist in Database, Please Verify!");
                     }
                 } else
-                    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Customer EmailId/Password should not be null !");
+                    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Customer's EmailId/Password should not be null !");
             } else
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Customer Object can Not be Null !");
         }catch (CustomerNotCreatedException ex){
-            ex.printStackTrace();
+            logger.error(ex.getLocalizedMessage());
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Customer not created !");
         }catch (Exception ex){
-            ex.printStackTrace();
+            logger.error(ex.getLocalizedMessage());
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getLocalizedMessage());
         }
 
@@ -89,21 +93,21 @@ public class CustomerController {
 
     @GetMapping(value = "/customer/{id}")
     public ResponseEntity<?> getCustomer(@PathVariable Long id) throws CustomerIdNotFoundException {
-        if(!StringUtils.isEmpty(id)) {
+        if(!StringUtils.isEmpty(id) && id > 0) {
             try {
                 Customer cust = customerService.getCustomer(id);
                 if (cust != null)
                     return ResponseEntity.status(HttpStatus.OK).body(cust);
             }catch (CustomerIdNotFoundException ex) {
-                ex.printStackTrace();
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("CustomerId Not found in database");
+                logger.error(ex.getLocalizedMessage());
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("CustomerId Not found in database !");
             }catch (Exception ex){
-                ex.printStackTrace();
+                logger.error(ex.getLocalizedMessage());
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getLocalizedMessage());
             }
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Something is wrong");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Something is wrong !");
         }else{
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Id can not be blank");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Id can not be blank or zero !");
         }
     }
 }
