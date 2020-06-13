@@ -6,7 +6,7 @@ This code has Create and Get REST API with in memory DB and test cases
 
 1) It will consume Json and will give output as a Json
 
-      Url : /api/customer <br />
+      Url :/api/customer <br />
       Method type : POST <br />
       Payload :
       {
