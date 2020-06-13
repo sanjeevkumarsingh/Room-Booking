@@ -10,21 +10,21 @@ This code has Create and Get REST API with in memory DB and test cases
       Method type : POST <br />
       Payload :
       {
-        "id":<Long> //Auto Increment, primary key
-        "firstName":<String> max length 50
-        "lastName":<String> max length 50
-        "password" :<String> length 8-10 
-        "email":<String>@<String>.<String> //Unique Key
-        "dob": <yyyy-MM-dd>
+        "id":LONG //Auto Increment, primary key
+        "firstName":STRING max length 50
+        "lastName":STRING max length 50
+        "password" :STRING length 8-10 
+        "email":STRING //Unique Key
+        "dob": DATE //yyyy-MM-dd
       }
       Response :
       {
-        "id":<Long>,
-        "firstName":<String> max length 50,
-        "lastName":<String> max length 50,
-        "password" :<String> length 8-10,
-        "email":<String> <String>@<string>.<charector>,
-        "dob": <yyyy-MM-dd>
+        "id":LONG //Auto Increment, primary key
+        "firstName":STRING max length 50
+        "lastName":STRING max length 50
+        "password" :STRING length 8-10 
+        "email":STRING //Unique Key
+        "dob": DATE //yyyy-MM-dd
       }
 
       Sample Data Input: 
@@ -54,12 +54,12 @@ This code has Create and Get REST API with in memory DB and test cases
       Method type : GET <br />
       Response :
       {
-        "id":<Long>,
-        "firstName":<String> max length 50,
-        "lastName":<String> max length 50,
-        "password" :<String> length 8-10,
-        "email":<String> <String>@<string>.<charector>,
-        "dob": <yyyy-MM-dd>
+        "id":LONG //Auto Increment, primary key
+        "firstName":STRING max length 50
+        "lastName":STRING max length 50
+        "password" :STRING length 8-10 
+        "email":STRING //Unique Key
+        "dob": DATE //yyyy-MM-dd
       }
 
       Sample Data Output:
