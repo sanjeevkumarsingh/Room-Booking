@@ -75,7 +75,7 @@ public class CustomerServiceImpl implements CustomerService {
      * verify if  the customer in exist in database or not
      *
      * @param customer - it will accept customer object and will check the existing customer with email id.
-     * @return A Boolean DataType or throw exception.
+     * @return A Boolean DataType.
      */
     @Override
     public boolean verifyCustomer(Customer customer) {
