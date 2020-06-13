@@ -62,6 +62,7 @@ This code has Create and Get REST API with in memory DB and test cases
         "dob": DATE //yyyy-MM-dd
       }
 
+      Sample Url : /api/customer/101
       Sample Data Output:
       {
         "id":101,
