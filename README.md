@@ -75,4 +75,15 @@ This code has Create and Get REST API with in memory DB and test cases
 
 ==========================Test-Cases======================
 
-It has 13 test cases covering some expected condition check and their expected output status
+It has some test cases covering some expected condition check and their expected output status
+
+
+
+<b>Assumption</b> : <br/>
+Id will be auto generated, passing id in json will be ignored, It will return the generated Id,That will used for get API<br/>
+firstName/lastName should have only string or blank is allowed.<br/>
+Password length must be 8-10 charector.<br/>
+Email should have proper validation.<br/>
+DOB should have in given format(yyyy-MM-dd) else won't accept.<br/>
+
+
