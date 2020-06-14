@@ -56,7 +56,7 @@ public class CustomerController {
                     Boolean isExistingCustomer = customerService.verifyCustomer(customer);
                     if (!isExistingCustomer) {
                         if (util.validatePassword(customer.getPassword()) && util.validateEmail(customer.getEmail())) {
-                            if (util.isString(customer.getFirstName()) && util.isString(customer.getLastName())){
+                            if (util.isStringOrNull(customer.getFirstName()) && util.isStringOrNull(customer.getLastName())){
                                 customer = customerService.createCustomer(customer);
 
                             if (customer != null && !StringUtils.isEmpty(customer.getId()))

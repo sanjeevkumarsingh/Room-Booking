@@ -42,7 +42,7 @@ public class Util {
      * @param string A string that is to verify with String paterm.
      * @return boolean if verified the length then it's true else false.
      */
-    public boolean isString(String string) {
+    public boolean isStringOrNull(String string) {
         String regex = "^[a-zA-Z]*$";
         if (string != null && string.length() > 0)
             return string.trim().matches(regex);
