@@ -6,9 +6,9 @@ This code has Create and Get REST API with in memory DB and test cases
 
 1) It will consume Json and will give output as a Json
 
-      Url :/api/customer <br />
-      Method type : POST <br />
-      Payload :
+      <b>URL</b> :/api/customer <br />
+      <b>Method type</b> : POST <br />
+      <b>Payload</b> :
       {
         "id":LONG //Auto Increment, primary key,
         "firstName":STRING max length 50,
@@ -17,7 +17,7 @@ This code has Create and Get REST API with in memory DB and test cases
         "email":STRING //Unique Key,
         "dob": DATE //yyyy-MM-dd
       }
-      Response :
+      <b>Response</b> :
       {
         "id":LONG //Auto Increment, primary key,
         "firstName":STRING max length 50,
@@ -27,7 +27,7 @@ This code has Create and Get REST API with in memory DB and test cases
         "dob": DATE //yyyy-MM-dd
       }
 
-      Sample Data Input: 
+      <b>Sample Input Data </b>: 
       {
         "id":101,
         "firstName":"sanjeev",
@@ -37,7 +37,7 @@ This code has Create and Get REST API with in memory DB and test cases
         "dob":"2020-07-21"
       }
 
-      Sample Data Output:
+     <b> Sample Output Data</b> :
       {
         "id":101,
         "firstName":"sanjeev",
@@ -50,9 +50,9 @@ This code has Create and Get REST API with in memory DB and test cases
 
 2) It will accept Id as a long datatype and will produce a json.
 
-      Url : /api/customer/{Id} <br />
-      Method type : GET <br />
-      Response :
+      <b>URL</b> : /api/customer/{Id} <br />
+      <b>Method type</b> : GET <br />
+      <b>Response</b> :
       {
         "id":LONG //Auto Increment, primary key,
         "firstName":STRING max length 50,
@@ -60,10 +60,10 @@ This code has Create and Get REST API with in memory DB and test cases
         "password" :STRING length 8-10,
         "email":STRING //Unique Key,
         "dob": DATE //yyyy-MM-dd
-      }
+      }</br>
 
-      Sample Url : /api/customer/101
-      Sample Data Output:
+      <b>Sample Url</b> : /api/customer/101 </br>
+     <b> Sample Data Output</b>:
       {
         "id":101,
         "firstName":"sanjeev",
