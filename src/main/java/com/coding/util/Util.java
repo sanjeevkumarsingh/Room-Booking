@@ -22,6 +22,7 @@ public class Util {
             return true;
         return false;
     }
+
     /**
      * Return the true if the password meets the length condition else false.
      *
@@ -32,6 +33,21 @@ public class Util {
 
         String regex = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
         return email.matches(regex);
+    }
+
+    /**
+     * if string is not null then it should be string only otherwise null is allowed.
+     * Return the true if the string meets the condition else false.
+     *
+     * @param string A string that is to verify with String paterm.
+     * @return boolean if verified the length then it's true else false.
+     */
+    public boolean isString(String string) {
+        String regex = "^[a-zA-Z]*$";
+        if (string != null && string.length() > 0)
+            return string.trim().matches(regex);
+        else
+            return true;
     }
 
 

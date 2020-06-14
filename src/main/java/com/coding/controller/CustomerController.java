@@ -56,14 +56,18 @@ public class CustomerController {
                     Boolean isExistingCustomer = customerService.verifyCustomer(customer);
                     if (!isExistingCustomer) {
                         if (util.validatePassword(customer.getPassword()) && util.validateEmail(customer.getEmail())) {
-                            customer = customerService.createCustomer(customer);
+                            if (util.isString(customer.getFirstName()) && util.isString(customer.getLastName())){
+                                customer = customerService.createCustomer(customer);
 
                             if (customer != null && !StringUtils.isEmpty(customer.getId()))
                                 return ResponseEntity.status(HttpStatus.CREATED).body(customer);
                             else
                                 return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(customer);
+                        }else
+                                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Name should be alphabet only !");
+
                         } else
-                            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Customer's password/email does meet it's criteria, password must be 8-10 character!");
+                            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Customer's password/email does meet it's criteria, password must be 8-10 character !");
 
                     } else {
                         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Customer's  Email already exist in Database, Please Verify!");

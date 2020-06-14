@@ -129,6 +129,71 @@ public class CustomerControllerTest {
                 .andReturn();
         assertEquals(201, result.getResponse().getStatus());
     }
+    /**
+     * FirstName String validation
+     */
+
+    @Test
+    public void CustomerCreateFirstNameValidationTest() throws Exception {
+        Customer customer = getCustomerBean();
+        customer.setFirstName("sanjeev123");
+        String jsonRequest = mapper.writeValueAsString(customer);
+        Mockito.when(repository.save(any(Customer.class))).thenReturn(customer);
+
+        MvcResult result = mockMvc.perform(post("/api/customer").content(jsonRequest).contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().is(400))
+                .andReturn();
+        assertEquals(400, result.getResponse().getStatus());
+    }
+    /**
+     * FirstName String validation null allowed
+     */
+
+    @Test
+    public void CustomerCreateFirstNameNullValidationTest() throws Exception {
+        Customer customer = getCustomerBean();
+        customer.setFirstName(null);
+        String jsonRequest = mapper.writeValueAsString(customer);
+        Mockito.when(repository.save(any(Customer.class))).thenReturn(customer);
+
+        MvcResult result = mockMvc.perform(post("/api/customer").content(jsonRequest).contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().is(201))
+                .andReturn();
+        assertEquals(201, result.getResponse().getStatus());
+    }
+    /**
+     * LastName String validation null allowed
+     */
+    /**
+     * LastName String validation null allowed
+     */
+
+    @Test
+    public void CustomerCreateLastNameValidationTest() throws Exception {
+        Customer customer = getCustomerBean();
+        customer.setLastName("singh12");
+        String jsonRequest = mapper.writeValueAsString(customer);
+        Mockito.when(repository.save(any(Customer.class))).thenReturn(customer);
+
+        MvcResult result = mockMvc.perform(post("/api/customer").content(jsonRequest).contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().is(400))
+                .andReturn();
+        assertEquals(400, result.getResponse().getStatus());
+    }
+
+
+    @Test
+    public void CustomerCreateLastNameNullValidationTest() throws Exception {
+        Customer customer = getCustomerBean();
+        customer.setLastName(null);
+        String jsonRequest = mapper.writeValueAsString(customer);
+        Mockito.when(repository.save(any(Customer.class))).thenReturn(customer);
+
+        MvcResult result = mockMvc.perform(post("/api/customer").content(jsonRequest).contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().is(201))
+                .andReturn();
+        assertEquals(201, result.getResponse().getStatus());
+    }
 
     /**
      * This method test the API if it saved the data in database successfully and give us the result as expected.
