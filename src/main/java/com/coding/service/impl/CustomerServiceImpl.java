@@ -35,25 +35,20 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public Customer getCustomer(Long id) throws CustomerIdNotFoundException {
+        try {
+            Customer customer = customerRepository.findById(id).orElse(null);
+            if (customer != null) {
+                return customer;
 
-        Customer customer = customerRepository.findById(id).orElse(null);
-        if (customer != null) {
-            return customer;
-
-        } else
-            throw new CustomerIdNotFoundException();
+            } else
+                throw new CustomerIdNotFoundException();
+        }catch (Exception ex){
+            logger.warn(ex.getLocalizedMessage());
+            throw new CustomerIdNotFoundException(ex.getLocalizedMessage());
+        }
     }
 
-    /**
-     * Retrieve the customer from database by id
-     *
-     * @return A Customer DataType or null if id not found.
-     */
-    @Override
-    public Customer getCustomerById(Long id) {
 
-        return customerRepository.findById(id).orElse(null);
-    }
 
     /**
      * Store the customer in database
@@ -84,11 +79,15 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public boolean verifyCustomer(Customer customer) {
         if (customer != null && !StringUtils.isEmpty(customer.getEmail()) && !StringUtils.isEmpty(customer.getPassword())) {
+            try{
             Customer existingCustomer = customerRepository.findByEmailIgnoreCase(customer.getEmail().trim());
             if(existingCustomer!=null && !StringUtils.isEmpty(existingCustomer.getId())) {
                     return true;
             } else {
                 return false;
+            }
+            }catch (Exception ex){
+                logger.warn(ex.getLocalizedMessage());
             }
         }
          return false;

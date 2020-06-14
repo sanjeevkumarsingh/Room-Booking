@@ -63,7 +63,7 @@ public class CustomerController {
                             else
                                 return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(customer);
                         } else
-                            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Customer's password/email does meed it's criteria, password must be 8-10 character!");
+                            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Customer's password/email does meet it's criteria, password must be 8-10 character!");
 
                     } else {
                         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Customer's  Email already exist in Database, Please Verify!");
@@ -107,7 +107,7 @@ public class CustomerController {
             }
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Something is wrong !");
         }else{
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Id can not be blank or zero !");
+            return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body("Id can not be blank or zero !");
         }
     }
 }

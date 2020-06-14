@@ -12,8 +12,6 @@ import com.coding.model.Customer;
 public interface CustomerService {
     public Customer getCustomer(Long id);
 
-    public Customer getCustomerById(Long id);
-
     public Customer createCustomer(Customer customer);
 
     public Customer updateCustomer(Customer customer);
