@@ -1,5 +1,5 @@
 # Room-Booking
-This code has Create and Get REST API with in memory DB and test cases
+This code has POST and GET REST API with in memory DB and test cases
 
 
 ===========Read Me============
